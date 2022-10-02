@@ -3,6 +3,7 @@ const DEFAULT_QUALITY = 10
 function params(req, res, next) {
   let url = req.query.url
   if (Array.isArray(url)) url = url.join('&url=')
+  res.setHeader('access-control-allow-origin', '*')
   if (!url) return res.end('bandwidth-hero-proxy')
 
   url = url.replace(/http:\/\/1\.1\.\d\.\d\/bmi\/(https?:\/\/)?/i, 'http://')
