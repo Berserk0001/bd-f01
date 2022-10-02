@@ -8,10 +8,10 @@ function compress(req, res, input) {
     .grayscale(req.params.grayscale)
     .toFormat(format, {
       quality: req.params.quality,
-			progressive: true,	// jpeg
-			mozjpeg: true,		// jpeg
-			alphaQuality: 0,	// webp
-			effort: 6		// webp
+progressive: true,	// jpeg
+mozjpeg: true,		// jpeg
+alphaQuality: 0,	// webp
+effort: 0		// webp
     })
     .toBuffer((err, output, info) => {
       if (err || !info || res.headersSent) return redirect(req, res)
