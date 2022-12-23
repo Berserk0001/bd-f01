@@ -1,5 +1,5 @@
-const MIN_COMPRESS_LENGTH = 2048
-const MIN_TRANSPARENT_COMPRESS_LENGTH = MIN_COMPRESS_LENGTH * 10    // ~20Kb
+const MIN_COMPRESS_LENGTH = 1024
+const MIN_TRANSPARENT_COMPRESS_LENGTH = MIN_COMPRESS_LENGTH * 10 // 20Kb
 
 function shouldCompress(req) {
   const { originType, originSize, webp } = req.params
@@ -9,7 +9,7 @@ function shouldCompress(req) {
   if (webp && originSize < MIN_COMPRESS_LENGTH) return false
   if (
     !webp &&
-    (originType.endsWith('png') || originType.endsWith('gif') &&
+    (originType.endsWith('png') || originType.endsWith('gif')) &&
     originSize < MIN_TRANSPARENT_COMPRESS_LENGTH
   ) {
     return false
