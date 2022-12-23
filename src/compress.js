@@ -9,6 +9,7 @@ function compress(req, res, input) {
     .toFormat(format, {
       quality: req.params.quality,
       progressive: true,
+      optimizeScans: true,
       effort: 2
     })
     .toBuffer((err, output, info) => {
