@@ -1,16 +1,16 @@
 const sharp = require('sharp')
 const redirect = require('./redirect')
 
-function compress(quality, req, res, input) {
+function compress(req, res, input) {
   const format = req.params.webp ? 'webp' : 'jpeg'
-  const compressionQuality = req.params.quality * 0.1;
+  const compressionQuality = req.params.quality * 0.1
   
-  quality = Math.ceil(compressionQuality);
+  req.params.quality = Math.ceil(compressionQuality)
   
   sharp(input)
     .grayscale(req.params.grayscale)
     .toFormat(format, {
-      quality: quality,
+      quality: req.params.quality,
       effort: 2
     })
     .toBuffer((err, output, info) => {
